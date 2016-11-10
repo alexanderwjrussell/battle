@@ -12,11 +12,6 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    #player2_name = params[:player2_name].empty? ? :computer : params[:player2_name]
-    #player1 = Player.new(params[:player1_name])
-    #player2 = Player.new(player2_name)
-    #Game.create(player1, player2)
-    #redirect '/play'
     hero = params[:hero]
     villain = params[:villain]
     Game.create(Player.new(hero),Player.new(villain))
@@ -80,7 +75,7 @@ class Battle < Sinatra::Base
   end
 
   post '/attack' do
-    @game.target_player.poison_damage if @game.target_player.poisoned 
+    @game.target_player.poison_damage if @game.target_player.poisoned
     @game.switch
     redirect '/play'
   end
